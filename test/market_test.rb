@@ -91,14 +91,14 @@ class MarketTest < Minitest::Test
     
   end
 
-  def test_overstocked_items
+  def test_overstocked_items_zzz
     @vendor3.stock(@item3, 10)
 
     @market.add_vendor(@vendor1)
     @market.add_vendor(@vendor2)
     @market.add_vendor(@vendor3)
 
-    assert_equal [@item1, @item3], @market.overstocked_items
+    assert_equal [@item1], @market.overstocked_items
   end
 
   def test_sorted_item_list
@@ -110,4 +110,10 @@ class MarketTest < Minitest::Test
 
     assert_equal ["Banana Nice Cream", "Peach", "Peach-Raspberry Nice Cream", "Tomato"], @market.sorted_item_list
   end
+
+  # def test_date
+  #   Date.expects(:today), Date.parse("20200224")
+  #   new_market = Market.new("New Market")
+  #   assert_equal "11/11/2020", new_market.date
+  # end
 end

@@ -1,10 +1,14 @@
+require 'date'
+
 class Market
   attr_reader :name,
-              :vendors
+              :vendors,
+              :date
 
   def initialize(name)
     @name = name
     @vendors = []
+    # @date = get_date
   end
 
   def add_vendor(vendor)
@@ -41,9 +45,9 @@ class Market
   def overstocked_items
     results = []
     overstocked = total_inventory.find_all do |item, info|
-      info[:quantity] > 50 || info[:vendors].length > 1
+      info[:quantity] > 50 && info[:vendors].length > 1
     end
-    
+
     overstocked.each do |item|
       results << item[0]
     end
@@ -58,4 +62,9 @@ class Market
     end
     names.sort
   end
+
+  # def get_date
+  #   date = Date.today.strftime("%d/%m/%Y")
+  #   require 'pry'; binding.pry
+  # end
 end
