@@ -90,4 +90,8 @@ class MarketTest < Minitest::Test
       assert_equal total, @market.total_inventory
     
   end
+
+  def test_overstocked_items
+    assert_equal [@item1], @market.overstocked_items
+  end
 end
