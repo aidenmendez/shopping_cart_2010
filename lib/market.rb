@@ -40,14 +40,22 @@ class Market
 
   def overstocked_items
     results = []
-    total = total_inventory
-    overstocked = total.find_all do |item, info|
+    overstocked = total_inventory.find_all do |item, info|
       info[:quantity] > 50 || info[:vendors].length > 1
     end
+    
     overstocked.each do |item|
       results << item[0]
     end
 
     results
+  end
+
+  def sorted_item_list
+    names = []
+    total_inventory.each do |item, info|
+      names << item.name
+    end
+    names.sort
   end
 end
