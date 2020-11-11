@@ -4,6 +4,6 @@ class Item
 
   def initialize(data)
     @name = data[:name]
-    @price = data[:price]
+    @price = data[:price].slice(1..-1).to_f
   end
 end
